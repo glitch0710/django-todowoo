@@ -2,4 +2,25 @@
 
 {% block content %}
 Current
+
+<ul>
+  {% for todo in data %}
+    <li>
+      {% if todo.important %}
+        {% if todo.memo %}
+          <a href="{% url 'viewtodo' todo.id %}"><b>{{ todo.title }} - {{ todo.memo }}</b></a>
+        {% else %}
+          <a href="{% url 'viewtodo' todo.id %}"><b>{{ todo.title }}</b></a>
+        {% endif %}
+      {% else %}
+        {% if todo.memo %}
+          <a href="{% url 'viewtodo' todo.id %}">{{ todo.title }} - {{ todo.memo }}</a>
+        {% else %}
+          <a href="{% url 'viewtodo' todo.id %}">{{ todo.title }}</a>
+        {% endif %}
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+
 {% endblock %}
