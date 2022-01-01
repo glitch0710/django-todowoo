@@ -7,6 +7,11 @@
 <body>
     {% if user.is_authenticated %}
         Logged in as {{ user.username }}
+
+        <a href="{% url 'createtodo' %}">Create</a>
+        <a href="{% url 'currentodos' %}">Current</a>
+        <a href="{% url 'completedtodos' %}">Completed</a>
+
         <form action="{% url 'user_logout' %}" method="POST">
             {% csrf_token %}
             <button type="submit">Logout</button>

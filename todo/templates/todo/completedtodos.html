@@ -1,0 +1,30 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+Current
+
+<ul>
+  {% for todo in data %}
+    <li>
+      {% if todo.important %}
+        {% if todo.memo %}
+          <a href="{% url 'viewtodo' todo.id %}"><b>{{ todo.title }} - {{ todo.memo }}</b></a>
+          {{ todo.date_completed }}
+        {% else %}
+          <a href="{% url 'viewtodo' todo.id %}"><b>{{ todo.title }}</b></a>
+          {{ todo.date_completed }}
+        {% endif %}
+      {% else %}
+        {% if todo.memo %}
+          <a href="{% url 'viewtodo' todo.id %}">{{ todo.title }} - {{ todo.memo }}</a>
+          {{ todo.date_completed }}
+        {% else %}
+          <a href="{% url 'viewtodo' todo.id %}">{{ todo.title }}</a>
+          {{ todo.date_completed }}
+        {% endif %}
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
