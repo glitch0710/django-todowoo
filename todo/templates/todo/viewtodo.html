@@ -9,13 +9,17 @@
 <form method="POST">
   {% csrf_token %}
   {{ form.as_p }}
+  {% if data.date_completed is None %}
   <button type="submit">Save</button>
+  {% endif %}
 </form>
 
-<form action="{% url 'completetodo' data.id %}" method="POST">
-  {% csrf_token %}
-  <button type="submit">Complete</button>
-</form>
+{% if data.date_completed is None %}
+  <form action="{% url 'completetodo' data.id %}" method="POST">
+    {% csrf_token %}
+    <button type="submit">Complete</button>
+  </form>
+{% endif %}
 
 <form action="{% url 'deletetodo' data.id %}" method="POST">
   {% csrf_token %}
